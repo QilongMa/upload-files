@@ -14,7 +14,7 @@ module.exports = {
     filename: "[name][chunkhash:8].js",
     path: path.resolve(__dirname, "dist")
   },
-
+  devtool: 'source-map',
   plugins: [
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename: 'main.[chunkhash].css' }),
