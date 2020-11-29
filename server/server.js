@@ -7,8 +7,8 @@ const server = new express();
 
 server.use(cors());
 
-server.get('/test', (req, res) => {
-    res.end('api test success!')
+server.get('/api/merge', (req, res) => {
+    res.end('api merge request!')
 })
 
 server.post('/api/upload', (req, res) => {
