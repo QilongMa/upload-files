@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import { chunkFiles } from './utils/chunkFiles';
 import { fileAPI } from './utils/apiFlow';
+import './index.scss';
 
 export const HomeComponent = () => {
 
@@ -35,7 +36,8 @@ export const HomeComponent = () => {
             formData.append("chunk", chunk);
             formData.append("hash", hash);
             formData.append("filename", file.name);
-            return formData;
+            formData.append("filehash", file.hash);
+            return {formData};
         })
         .map(async ({formData}) => {
             return fileAPI.uploadSlicedFiles(formData);

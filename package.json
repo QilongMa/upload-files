@@ -17,7 +17,11 @@
     "url": "https://github.com/QilongMa/upload-files/issues"
   },
   "homepage": "https://github.com/QilongMa/upload-files#readme",
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "multiparty": "^4.2.2",
+    "path": "^0.12.7"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.8",
     "@babel/polyfill": "^7.12.1",

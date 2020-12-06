@@ -1,0 +1,1 @@
+exports.extractExt = filename => filename.slice(filename.lastIndexOf("."), filename.length);

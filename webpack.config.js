@@ -30,26 +30,10 @@ module.exports = {
       test: /\.(js|jsx)$/,
       include: [path.resolve(__dirname, 'src')],
       loader: 'babel-loader'
-    }, {
-      test: /.(scss|css)$/,
-
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: "style-loader"
-      }, {
-        loader: "css-loader",
-
-        options: {
-          sourceMap: true
-        }
-      }, {
-        loader: "sass-loader",
-
-        options: {
-          sourceMap: true
-        }
-      }]
+    }, 
+    {
+      test: /\.scss$/,
+      use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
     }]
   },
 
