@@ -1,4 +1,4 @@
-const CHUNK_SIZE = 1 * 1024;
+const CHUNK_SIZE = 1024 * 1024;
 // const CHUNK_SIZE = 10 * 1024 * 1024;
 
 export function chunkFiles(file, chunkSize = CHUNK_SIZE) {

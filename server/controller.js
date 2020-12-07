@@ -19,12 +19,12 @@ class Controller {
     // handleUpload
     async handleUpload(request, response) {
         const multiForm = new multiparty.Form();
-        multiForm.parse(request, async (err, field, files) => {
+        multiForm.parse(request, async (err, field, file) => {
             if(err) {
                 console.log('--err--', err);
                 return;
             }
-            console.log('----file----', field, files);
+            console.log('----file--ds--', field, file);
             // const [chunk] = file.chunk;
             const [hash] = field.hash;
             const [filename] = field.filename;

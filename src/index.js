@@ -33,7 +33,7 @@ export const HomeComponent = () => {
     async function uploadChunks(data) {
         const dataList = data.map(({chunk, hash}) => {
             let formData = new FormData();
-            formData.append("chunk", chunk);
+            formData.append("chunk", chunk.file);
             formData.append("hash", hash);
             formData.append("filename", file.name);
             formData.append("filehash", file.hash);
