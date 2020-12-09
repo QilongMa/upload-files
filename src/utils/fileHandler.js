@@ -1,4 +1,3 @@
-// import { resolve } from "path";
 import { fileAPI } from "./apiFlow";
 const OFF_SET = 1024 * 1024;
 
@@ -23,7 +22,6 @@ export async function limitRequest(requests, limit = 5) {
             resolve([]);
             return;
         }
-        console.log('---send request list---', requests);
 
         let len = requests.length;
         let inProcess = 0;
@@ -40,7 +38,6 @@ export async function limitRequest(requests, limit = 5) {
             for (; index < len && inProcess < limit; index++) {
                 inProcess++;
                 upload(requests[index].formData).then(data => {
-                    console.log('---concurrent response---', data);
                     inProcess--;
                     complete++;
                     res[index] = data;

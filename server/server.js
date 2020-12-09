@@ -10,8 +10,8 @@ const controller = new control(storePath);
 
 server.use(cors());
 
-server.get('/api/merge', async (req, res) => {
-    // console.log('---merge request---', req);
+server.post('/api/merge', async (req, res) => {
+    console.log('---merge request---');
     await controller.handleMerge(req, res);
     res.end('api merge request!')
     return;
