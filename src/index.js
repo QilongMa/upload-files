@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import { chunkFiles } from './utils/chunkFiles';
+import { chunkFiles, limitRequest } from './utils/fileHandler';
 import { fileAPI } from './utils/apiFlow';
 import './index.scss';
 
@@ -39,12 +39,14 @@ export const HomeComponent = () => {
             formData.append("filehash", file.hash);
             return {formData};
         })
-        .map(async ({formData}) => {
-            return fileAPI.uploadSlicedFiles(formData);
-        })
+        // .map(async ({formData}) => {
+        //     return fileAPI.uploadSlicedFiles(formData);
+        // })
+        // console.log('--watit to upload', dataList)
+        let res = await limitRequest(dataList);
 
-        let sentData = await Promise.all(dataList);
-        console.log('---uploaded---', sentData);
+        // let sentData = await Promise.all(dataList);
+        // console.log('---uploaded---', res);
         await fileAPI.mergeRequest();
     }
 

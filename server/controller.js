@@ -25,7 +25,7 @@ class Controller {
                 return;
             }
             console.log('----file--ds--', field, file);
-            // const [chunk] = file.chunk;
+            const [chunk] = file.chunk;
             const [hash] = field.hash;
             const [filename] = field.filename;
             const [filehash] = field.filehash;
@@ -39,7 +39,7 @@ class Controller {
             if(!fse.existsSync(chunkDir)) {
                 await fse.mkdirs(chunkDir);
             }
-            // await fse.move(chunk.path, `${chunkDir}/${hash}`);
+            await fse.move(chunk.path, `${chunkDir}/${hash}`);
             response.end("received file chunk ", hash);
         })
     }
