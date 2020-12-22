@@ -16,7 +16,7 @@ export function chunkFiles(file, chunkSize = OFF_SET) {
     return chunksList;
 }
 
-export async function limitRequest(requests, limit = 5) {
+export async function limitRequest(requests, limit = 4) {
     return new Promise(resolve => {
         if (requests.length === 0) {
             resolve([]);

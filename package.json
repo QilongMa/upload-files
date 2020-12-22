@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/QilongMa/upload-files#readme",
   "dependencies": {
+    "antd": "^4.9.4",
     "fs-extra": "^9.0.1",
     "multiparty": "^4.2.2",
     "path": "^0.12.7",

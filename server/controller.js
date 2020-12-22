@@ -27,6 +27,7 @@ class Controller {
             const [hash] = field.hash;
             const [filename] = field.filename;
             const [fileHash] = field.fileHash;
+            // console.log('---upload chunks---', chunk, hash, filename)
             const filePath = path.resolve(this.STORE_DIR, `${fileHash}${extractExt(filename)}`);
             const chunkDir = path.resolve(this.STORE_DIR, fileHash);
 
@@ -47,6 +48,8 @@ class Controller {
         const { fileHash, fileName, size } = data;
         const ext = extractExt(fileName);
         const filePath = path.resolve(this.STORE_DIR, `${fileHash}${ext}`);
+
+        console.log('---merge chunks on server---', fileHash, fileName, size, ext, filePath)
         await this.mergeFileChunks(filePath, fileHash, size);
 
         response.end(
@@ -71,7 +74,7 @@ class Controller {
         else {
             uploadedList = await getUploadedList(path.resolve(this.STORE_DIR, hash));
         }
-
+        console.log('--uploadedList--', uploadedList)
         response.end(
             JSON.stringify({
                 uploaded,

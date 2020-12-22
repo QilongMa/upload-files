@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 *, body {
     box-sizing: border-box;
 }
@@ -5,7 +7,9 @@
 .app-container {
     position: relative;
     margin: 100px auto 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 1080px;
+
+    .file-container {
+        margin: 20px 0;
+    }
 }

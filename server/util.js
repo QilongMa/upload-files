@@ -18,7 +18,8 @@ exports.resolvePost = req => {
 }
 
 exports.getUploadedList = async (path) => {
-    return fse.existsSync(path) ? (await fse.readdir(path)).filter(name => name[0] !== '.') : [];
+    const res = fse.existsSync(path) ? (await fse.readdir(path)).filter(name => name[0] !== '.') : [];
+    return res;
 }
 
 const pipeStream = (filePath, writeStream) => {
