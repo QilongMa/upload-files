@@ -10,9 +10,9 @@ const apiUrls = {
 const fileAPI = {
     async uploadSlicedFiles(files) {
         const url = apiUrls.baseUrl + apiUrls.uploadEndpoint;
-        console.log('---files uploade', files);
+        // console.log('---files uploade', files);
         let res = await axios.post(url, files);
-        console.log('---post response---', res);
+        // console.log('---post response---', res);
         return res;
     },
     async mergeRequest(name, fileHash, size) {

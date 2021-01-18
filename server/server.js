@@ -13,20 +13,16 @@ server.use(cors());
 server.post('/api/merge', async (req, res) => {
     console.log('---merge request---');
     await controller.handleMerge(req, res);
-    res.end('api merge request!')
     return;
 })
 
 server.post('/api/upload', async (req, res) => {
     console.log('server received ---');
     await controller.handleUpload(req, res);
-    res.json({
-        status: 200
-    })
     return;
 })
 server.post('/api/verify', async (req, res) => {
-    console.log('server verify ---');
+    // console.log('server verify ---');
     // 
     await controller.handleVerify(req, res);
     return;

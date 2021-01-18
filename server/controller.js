@@ -10,10 +10,16 @@ class Controller {
 
     async mergeFileChunks(filePath, fileHash, size) {
         const dir = path.resolve(this.STORE_DIR, fileHash);
-        let paths = await fse.readdir(dir);
-        paths.sort((a, b) => a.split("-")[1] - b.split("-")[1]);
-        paths = paths.map(p => path.resolve(dir, p));
-        await mergeFiles(paths, filePath, size);
+        try {
+            let paths = await fse.readdir(dir);
+            paths.sort((a, b) => a.split("-")[1] - b.split("-")[1]);
+            paths = paths.map(p => path.resolve(dir, p));
+            console.log('---merge paths---', paths)
+            await mergeFiles(paths, filePath, size);
+        }
+        catch(e) {
+            console.log('---error when read dir----', e)
+        }
     }
 
     async handleUpload(request, response) {
@@ -27,7 +33,7 @@ class Controller {
             const [hash] = field.hash;
             const [filename] = field.filename;
             const [fileHash] = field.fileHash;
-            // console.log('---upload chunks---', chunk, hash, filename)
+            console.log('---upload chunks---', chunk, hash, filename)
             const filePath = path.resolve(this.STORE_DIR, `${fileHash}${extractExt(filename)}`);
             const chunkDir = path.resolve(this.STORE_DIR, fileHash);
 
@@ -37,6 +43,7 @@ class Controller {
             }
             if(!fse.existsSync(chunkDir)) {
                 await fse.mkdirs(chunkDir);
+                console.log('---success create chunkDir', chunkDir)
             }
             await fse.move(chunk.path, `${chunkDir}/${hash}`);
             response.end("received file chunk ", hash);
@@ -49,7 +56,7 @@ class Controller {
         const ext = extractExt(fileName);
         const filePath = path.resolve(this.STORE_DIR, `${fileHash}${ext}`);
 
-        console.log('---merge chunks on server---', fileHash, fileName, size, ext, filePath)
+        console.log('---merge chunks on server---', fileHash, size)
         await this.mergeFileChunks(filePath, fileHash, size);
 
         response.end(

@@ -9,7 +9,7 @@ exports.resolvePost = req => {
         req.on("data", data => {
             chunkData += data;
         })
-        console.log('----resolvepost----', chunkData)
+        // console.log('----resolvepost----', chunkData)
         
         req.on("end", () => {
             resolve(JSON.parse(chunkData));
@@ -26,16 +26,19 @@ const pipeStream = (filePath, writeStream) => {
     return new Promise(resolve => {
         const readStream = fse.createReadStream(filePath);
         readStream.on("end", () => {
-            fse.unlinkSync(filePath);
+            // fse.unlinkSync(filePath);
             resolve();
         })
+        console.log(readStream, writeStream)
         readStream.pipe(writeStream);
     })
 }
 
 exports.mergeFiles = async (files, target, size) => {
+    // console.log('----merge files, ', files, target, size);
     await Promise.all(
         files.map((file, idx) => {
+            console.log('---file-------', file)
             return pipeStream(
                 file,
                 fse.createWriteStream(target, {

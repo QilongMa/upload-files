@@ -54,7 +54,7 @@ export const HomeComponent = () => {
             const { uploaded, uploadedList } = res && res.data;
 
             if (uploaded) {
-                // console.log('---秒传成功----')
+                console.log('---秒传成功----')
                 return '秒传成功';
             }
 
